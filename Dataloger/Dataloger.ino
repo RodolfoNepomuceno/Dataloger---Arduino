@@ -33,6 +33,8 @@ void setup()
   lcd.begin(16,2); //Como parametro la LCD que recibe.
  
   lcd.print("DHT22 test!");
+  delay(500);
+  lcd.clear();
 }
 
 void loop() {
@@ -55,11 +57,12 @@ void loop() {
   }
 
   lcd.clear();
-  lcd.print("Humidedad: "); 
+  lcd.print("Hum: "); 
   lcd.print(h);
-  lcd.print(" %\t");
+  lcd.print("%HR");
   lcd.setCursor(0, 2);
   lcd.print("Temp: "); 
   lcd.print(t);
-  lcd.print(" *C ");
+  lcd.write(0xDF);
+  lcd.print("C");
 }
