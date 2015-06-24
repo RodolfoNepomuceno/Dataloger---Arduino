@@ -1,12 +1,13 @@
 
 /*Sistemas de Computadoras - Dataloger usando Arduino*/
 
-#include "DHT.h"
+#include <DHT.h>
 #include <LiquidCrystal.h>
 
 /*Definiciones del sensor*/
-#define DHTPIN 0 //pin donde se conecta el sensor DHT22
+#define DHTPIN 8 //pin donde se conecta el sensor DHT22
 #define DHTTYPE DHT22 //define el senso conectado, DHT22
+DHT dht(DHTPIN, DHTTYPE);
 
 /*Definiciones del LCD*/
 /* The circuit:
@@ -42,9 +43,10 @@ void loop() {
   float t = dht.readTemperature(); //Obtener la temperatura en Celsius
 
   //Revisa si el sensor esta respondiendo
-  if (isnan(h) || isnan(t)
+  if (isnan(h) || isnan(t))
   {
-    lcd.print("!Sensor no responde!");
+    lcd.clear();
+    lcd.print("Sensor Error!");
     delay(1000);
     lcd.clear();
     lcd.print("Revisar conexion");
@@ -53,12 +55,11 @@ void loop() {
   }
 
   lcd.clear();
-  lcd.setCursor(0, 1);
   lcd.print("Humidedad: "); 
   lcd.print(h);
   lcd.print(" %\t");
   lcd.setCursor(0, 2);
-  lcd.print("Temperatura: "); 
+  lcd.print("Temp: "); 
   lcd.print(t);
   lcd.print(" *C ");
 }
