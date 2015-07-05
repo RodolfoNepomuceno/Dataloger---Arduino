@@ -48,7 +48,7 @@ void loop() {
   if (isnan(h) || isnan(t))
   {
     lcd.clear();
-    lcd.print("Sensor Error!");
+    lcd.print("Error en Sensor");
     delay(1000);
     lcd.clear();
     lcd.print("Revisar conexion");
